@@ -6,7 +6,7 @@
 /*   By: jomaia <jomaia@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/02 14:22:59 by jomaia            #+#    #+#             */
-/*   Updated: 2025/07/22 19:29:58 by jomaia           ###   ########.fr       */
+/*   Updated: 2025/07/23 16:18:40 by jomaia           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,18 +37,18 @@ int	check_invalid(char *str)
 	return (0);
 }
 
-int	check_double(t_list *lst, int n)
+int	check_double(t_stack *lst, int n)
 {
 	while (lst)
 	{
-		if (lst->content == n)
+		if (lst->value == n)
 			return (1);
 		lst = lst->next;
 	}
 	return (0);
 }
 
-int	split_to_atoi(t_list **lst, t_list *node, char *str, int i)
+int	split_to_atoi(t_stack **lst, t_stack *node, char *str, int i)
 {
 	int		sign;
 	long	num;
@@ -57,7 +57,7 @@ int	split_to_atoi(t_list **lst, t_list *node, char *str, int i)
 	{
 		sign = 1;
 		num = 0;
-		while (str[i] == ' ' || str[i] == '+');
+		while (str[i] == ' ' || str[i] == '+')
 			i++;
 		if (str[i] == '\0')
 			break;
@@ -71,8 +71,8 @@ int	split_to_atoi(t_list **lst, t_list *node, char *str, int i)
 		num *= sign;
 		if (num > INT_MAX || num < INT_MIN || check_double(*lst, num))
 			return (0);
-		node = ft_lstnew(num);
-		ft_lstadd_back(lst, node);
+		node = ft_lst_new((int) num);
+		ft_lst_add_back(lst, node);
 	}
 	return (1);
 }

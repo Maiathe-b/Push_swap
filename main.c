@@ -6,18 +6,34 @@
 /*   By: jomaia <jomaia@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/02 14:06:49 by jomaia            #+#    #+#             */
-/*   Updated: 2025/07/22 19:36:58 by jomaia           ###   ########.fr       */
+/*   Updated: 2025/07/23 15:17:23 by jomaia           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
+int	check_sorted(t_stack *stack_a, t_stack *stack_b)
+{
+	t_stack *ptr;
+
+	if (stack_b)
+		return (0);
+	ptr = stack_a;
+	while (ptr->next)
+	{
+		if(ptr->value > ptr->next->value)
+			return (0);
+		ptr = ptr->next;
+	}
+	return (1);
+}
+
 int	main(int argc, char **argv)
 {
 	int		i;
-	t_list	*stack_a;
-	t_list	*stack_b;
-	t_list	*node;
+	t_stack	*stack_a;
+	t_stack	*stack_b;
+	t_stack	*node;
 	
 	if (argc < 2)
 		print_errors("No arguments");
@@ -33,5 +49,7 @@ int	main(int argc, char **argv)
 			print_errors();
 		}
 	}
-	if ()
+	if (check_sorted(stack_a, stack_b))
+		return (free_lists(stack_a, stack_b), 0);
+	print_lists(stack_a);
 }
