@@ -6,7 +6,7 @@
 /*   By: jomaia <jomaia@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/02 14:17:05 by jomaia            #+#    #+#             */
-/*   Updated: 2025/07/23 16:21:00 by jomaia           ###   ########.fr       */
+/*   Updated: 2025/08/05 15:09:34 by jomaia           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,17 @@ void	print_lists(t_stack *stack_a)
 	}
 }
 
-int	ft_isdigit(char c)
+int	ft_lstsize(t_stack *lst)
 {
-	if(c >= '0' && c <= '9')
-		return (1);
-	return (0);
+	int	i;
+
+	i = 0;
+	if (!lst)
+		return (0);
+	while (lst != NULL)
+	{
+		lst = lst->next;
+		i++;
+	}
+	return (i);
 }

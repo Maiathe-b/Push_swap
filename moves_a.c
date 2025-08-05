@@ -6,7 +6,7 @@
 /*   By: jomaia <jomaia@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/23 17:20:41 by jomaia            #+#    #+#             */
-/*   Updated: 2025/07/23 18:54:58 by jomaia           ###   ########.fr       */
+/*   Updated: 2025/08/05 19:17:45 by jomaia           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,18 @@
 
 void	swap_a(t_stack **stack_a)
 {
-	t_stack	*temp;
-	
-	if ((*stack_a)->next)
-	{
-		temp = (*stack_a);
-		(*stack_a) = (*stack_a)->next;
-		(*stack_a)->prev = temp;
-		write(1, "sa\n", 3);
-	}
+	int	temp;
+	int	idx;
+
+	if (ft_lstsize (*stack_a) < 2)
+		return ;
+	temp = (*stack_a)->value;
+	(*stack_a)->value = (*stack_a)->next->value;
+	(*stack_a)->next->value = temp;
+	idx = (*stack_a)->index;
+	(*stack_a)->index = (*stack_a)->next->index;
+	(*stack_a)->next->index = idx;
+	write (1, "sa\n", 3);
 }
 
 void	push_a(t_stack **stack_a, t_stack **stack_b)
@@ -61,7 +64,7 @@ void	rotate_a(t_stack **stack_a)
 	if(*stack_a)
 		return ;
 	first = *stack_a;
-	last = ft_lst_last(*stack_a);
+	last = ft_lstlast(*stack_a);
 	*stack_a = (*stack_a)->next;
 	last->next = first;
 	first->prev = last;
@@ -77,7 +80,7 @@ void	reverse_rotate_a(t_stack **stack_a)
 	if (!*stack_a)
 		return ;
 	first = *stack_a;
-	last = ft_lst_last(*stack_a);
+	last = ft_lstlast(*stack_a);
 	first->prev = last;
 	last->prev->next = NULL;
 	last->next = first;

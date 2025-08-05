@@ -6,18 +6,16 @@
 /*   By: jomaia <jomaia@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/02 14:06:49 by jomaia            #+#    #+#             */
-/*   Updated: 2025/07/23 15:17:23 by jomaia           ###   ########.fr       */
+/*   Updated: 2025/08/05 18:57:44 by jomaia           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	check_sorted(t_stack *stack_a, t_stack *stack_b)
+int	check_sorted(t_stack *stack_a)
 {
 	t_stack *ptr;
 
-	if (stack_b)
-		return (0);
 	ptr = stack_a;
 	while (ptr->next)
 	{
@@ -26,6 +24,23 @@ int	check_sorted(t_stack *stack_a, t_stack *stack_b)
 		ptr = ptr->next;
 	}
 	return (1);
+}
+
+int	optimal_divider(int size)
+{
+	int	divider;
+	
+	if (size > 400)
+		divider = 30;
+	else if (size >= 100)
+		divider = 10;
+	else if (size >= 50)
+		divider = 5;
+	else if (size >= 10)
+		divider = size / 4;
+	else
+		divider = 4;
+	return (divider);
 }
 
 int	main(int argc, char **argv)
@@ -49,7 +64,10 @@ int	main(int argc, char **argv)
 			print_errors();
 		}
 	}
-	if (check_sorted(stack_a, stack_b))
+	if (check_sorted(stack_a))
 		return (free_lists(stack_a, stack_b), 0);
-	print_lists(stack_a);
+	i = optimal_divider(ft_lstsize(stack_a));
+	choose_sort(&stack_a, &stack_b, i);
+	free_lists(stack_a, stack_b);
+	return (0);
 }
