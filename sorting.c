@@ -41,9 +41,10 @@ void	normalize(t_stack **stack_a, int size)
 			if (stack->value < smallest->value && stack->index == 0)
 				smallest = stack;
 			stack = stack->next;
-			index++;
-			counter++;
 		}
+		smallest->index = index;
+		index++;
+		counter++;
 	}
 }
 
@@ -71,14 +72,16 @@ void	norm_push(t_stack **stack_a, t_stack **stack_b, int size,
 	t_range	range;
 
 	normalize(stack_a, size);
+	print_value (*stack_a, *stack_b);
 	range.min = divider;
 	range.max = range.min * 2;
 	range.count_limit = size - 2;
-	while (ft_lstsize (*stack_a) > 3)
+	while (ft_lstsize(*stack_a) > 3)
 	{
 		sort_b (stack_a, stack_b, range);
 		range.min += (divider * 2);
 		range.max += (divider * 2);
+		print_value (*stack_a, *stack_b);
 	}
 }
 
@@ -98,6 +101,7 @@ void	choose_sort(t_stack **stack_a, t_stack **stack_b, int divider)
 		norm_push(stack_a, stack_b, size, divider);
 		if(!check_sorted(*stack_a))
 			sort_three(stack_a);
+		print_value (*stack_a, *stack_b);
 		while (ft_lstsize (*stack_b) > 0)
 			push_decider(stack_a, stack_b, ft_lstsize(*stack_b));
 	}

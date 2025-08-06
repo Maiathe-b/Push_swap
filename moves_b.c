@@ -14,15 +14,18 @@
 
 void	swap_b(t_stack **stack_b)
 {
-	t_stack	*temp;
-	
-	if ((*stack_b)->next)
-	{
-		temp = (*stack_b);
-		(*stack_b) = (*stack_b)->next;
-		(*stack_b)->prev = temp;
-		write(1, "sb\n", 3);
-	}
+	int	temp;
+	int	idx;
+
+	if (ft_lstsize (*stack_b) < 2)
+		return ;
+	temp = (*stack_b)->value;
+	(*stack_b)->value = (*stack_b)->next->value;
+	(*stack_b)->next->value = temp;
+	idx = (*stack_b)->index;
+	(*stack_b)->index = (*stack_b)->next->index;
+	(*stack_b)->next->index = idx;
+	write (1, "sb\n", 3);
 }
 
 void	push_b(t_stack **stack_a, t_stack **stack_b)
@@ -54,7 +57,7 @@ void	rotate_b(t_stack **stack_b)
 	t_stack	*first;
 	t_stack	*last;
 
-	if(*stack_b)
+	if(!*stack_b)
 		return ;
 	first = *stack_b;
 	last = ft_lstlast(*stack_b);

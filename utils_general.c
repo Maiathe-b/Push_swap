@@ -6,7 +6,7 @@
 /*   By: jomaia <jomaia@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/02 14:17:05 by jomaia            #+#    #+#             */
-/*   Updated: 2025/08/05 15:09:34 by jomaia           ###   ########.fr       */
+/*   Updated: 2025/08/06 14:16:41 by jomaia           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,19 +34,4 @@ void	print_lists(t_stack *stack_a)
 		printf("%d\n", ptr->value);
 		ptr = ptr->next;
 	}
-}
-
-int	ft_lstsize(t_stack *lst)
-{
-	int	i;
-
-	i = 0;
-	if (!lst)
-		return (0);
-	while (lst != NULL)
-	{
-		lst = lst->next;
-		i++;
-	}
-	return (i);
 }

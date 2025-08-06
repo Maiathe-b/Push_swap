@@ -6,7 +6,7 @@
 /*   By: jomaia <jomaia@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/02 14:08:09 by jomaia            #+#    #+#             */
-/*   Updated: 2025/08/05 18:52:41 by jomaia           ###   ########.fr       */
+/*   Updated: 2025/08/06 15:08:17 by jomaia           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ typedef struct s_range
 int		check_invalid(char *str);
 void	free_lists(t_stack *stack_a, t_stack *stack_b);
 void	print_errors();
-int		split_to_atoi(t_stack **lst, t_stack *node, char *str, int i);
+int		split_to_atoi(t_stack **lst, char *str, int i);
 void	print_lists(t_stack *stack_a);
 void	swap_a(t_stack **stack_a);
 void	push_a(t_stack **stack_a, t_stack **stack_b);
@@ -50,6 +50,6 @@ void	push_b_down_switch(t_stack **stack_a, t_stack **stack_b, int index);
 void	push_b_up_switch(t_stack **stack_a, t_stack **stack_b, int index);
 void	push_decider(t_stack **stack_a, t_stack **stack_b, int size);
 void	choose_sort(t_stack **stack_a, t_stack **stack_b, int divider);
-
+void print_value (t_stack *a, t_stack *b);
 
 #endif

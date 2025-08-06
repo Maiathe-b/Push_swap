@@ -6,7 +6,7 @@
 /*   By: jomaia <jomaia@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/05 16:54:52 by jomaia            #+#    #+#             */
-/*   Updated: 2025/08/05 18:57:26 by jomaia           ###   ########.fr       */
+/*   Updated: 2025/08/06 15:46:07 by jomaia           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,9 +53,9 @@ int	push_cost(t_stack *stack_b, int index)
 
 	cost_top = top_cost(stack_b, index);
 	cost_bottom = bottom_cost(stack_b, index);
-	if (cost_bottom < cost_top)
-		return (cost_bottom);
-	return (cost_top);
+	if (cost_top < cost_bottom)
+		return (cost_top);
+	return (cost_bottom);
 }
 
 void	push_decider(t_stack **stack_a, t_stack **stack_b, int size)
@@ -69,9 +69,9 @@ void	push_decider(t_stack **stack_a, t_stack **stack_b, int size)
 		else
 			push_b_down(stack_a, stack_b, size);
 		if (top_cost(*stack_b, size - 1) < bottom_cost(*stack_b, size -1))
-			push_b_up(stack_a, stack_b, size);
+			push_b_up(stack_a, stack_b, size - 1);
 		else
-			push_b_down(stack_a, stack_b, size);
+			push_b_down(stack_a, stack_b, size - 1);
 	}
 	else
 	{
@@ -83,6 +83,5 @@ void	push_decider(t_stack **stack_a, t_stack **stack_b, int size)
 			push_b_up_switch (stack_a, stack_b, size);
 		else
 			push_b_down_switch (stack_a, stack_b, size);
-
 	}
 }

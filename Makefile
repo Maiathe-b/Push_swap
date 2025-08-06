@@ -10,7 +10,7 @@ SRCS =moves_a.c utils_general.c \
 OBJS = $(SRCS:.c=.o)
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -g -Wall -Wextra -Werror
 
 all: $(LIBFT) $(NAME) 
 

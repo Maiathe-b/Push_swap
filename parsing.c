@@ -6,7 +6,7 @@
 /*   By: jomaia <jomaia@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/02 14:22:59 by jomaia            #+#    #+#             */
-/*   Updated: 2025/07/23 16:18:40 by jomaia           ###   ########.fr       */
+/*   Updated: 2025/08/06 13:58:56 by jomaia           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int	check_double(t_stack *lst, int n)
 	return (0);
 }
 
-int	split_to_atoi(t_stack **lst, t_stack *node, char *str, int i)
+int	split_to_atoi(t_stack **stack, char *str, int i)
 {
 	int		sign;
 	long	num;
@@ -69,10 +69,9 @@ int	split_to_atoi(t_stack **lst, t_stack *node, char *str, int i)
 		while (str[i] >= '0' && str[i] <= '9')
 			num = (num * 10) + (str[i++] - '0');
 		num *= sign;
-		if (num > INT_MAX || num < INT_MIN || check_double(*lst, num))
+		if (num > INT_MAX || num < INT_MIN || check_double(*stack, num))
 			return (0);
-		node = ft_lst_new((int) num);
-		ft_lst_add_back(lst, node);
+		ft_lst_add_back(stack, ft_lst_new(num));
 	}
 	return (1);
 }

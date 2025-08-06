@@ -6,7 +6,7 @@
 /*   By: jomaia <jomaia@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/02 14:06:49 by jomaia            #+#    #+#             */
-/*   Updated: 2025/08/05 18:57:44 by jomaia           ###   ########.fr       */
+/*   Updated: 2025/08/06 17:27:04 by jomaia           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,22 +43,47 @@ int	optimal_divider(int size)
 	return (divider);
 }
 
+void print_value (t_stack *a, t_stack *b) // delete
+{
+	printf("\nA\tB");
+	printf("\n");
+	while (a != NULL || b != NULL)
+	{
+		if (a)
+		{
+			printf("%d", (int)a->index);
+			a = a->next;
+		}
+		else
+			printf("   ");
+		printf("\t   ");
+		if (b)
+		{
+			printf("%d\n", (int)b->index);
+			b = b->next;
+		}
+		else
+			printf("\n");
+	}
+	printf("\n");
+	printf("--------------------------------\n");
+	fflush(stdout);
+}
+
 int	main(int argc, char **argv)
 {
 	int		i;
 	t_stack	*stack_a;
 	t_stack	*stack_b;
-	t_stack	*node;
 	
 	if (argc < 2)
 		print_errors("No arguments");
 	i = 0;
 	stack_a = NULL;
 	stack_b = NULL;
-	node = NULL;
 	while (++i < argc)
 	{
-		if (check_invalid(argv[i]) || !split_to_atoi(&stack_a, node, argv[i], 0))
+		if (check_invalid(argv[i]) || !split_to_atoi(&stack_a, argv[i], 0))
 		{
 			free_lists(stack_a, stack_b);
 			print_errors();
@@ -68,6 +93,7 @@ int	main(int argc, char **argv)
 		return (free_lists(stack_a, stack_b), 0);
 	i = optimal_divider(ft_lstsize(stack_a));
 	choose_sort(&stack_a, &stack_b, i);
+	print_value(stack_a, stack_b);
 	free_lists(stack_a, stack_b);
 	return (0);
 }

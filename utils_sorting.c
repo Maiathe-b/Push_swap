@@ -6,7 +6,7 @@
 /*   By: jomaia <jomaia@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/05 16:36:00 by jomaia            #+#    #+#             */
-/*   Updated: 2025/08/05 16:48:32 by jomaia           ###   ########.fr       */
+/*   Updated: 2025/08/06 17:26:01 by jomaia           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	optimal_rotate(t_stack **stack_a, t_stack **stack_b, t_range range)
 {
 	push_b (stack_a, stack_b);
-	if ((*stack_a)->index > range.max)
+	if ((*stack_a)->index > range.min)
 	{
 		rotate_both (stack_a, stack_b);
 		return ;

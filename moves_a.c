@@ -15,16 +15,16 @@
 void	swap_a(t_stack **stack_a)
 {
 	int	temp;
-	int	idx;
+	int	index;
 
 	if (ft_lstsize (*stack_a) < 2)
 		return ;
 	temp = (*stack_a)->value;
 	(*stack_a)->value = (*stack_a)->next->value;
 	(*stack_a)->next->value = temp;
-	idx = (*stack_a)->index;
+	index = (*stack_a)->index;
 	(*stack_a)->index = (*stack_a)->next->index;
-	(*stack_a)->next->index = idx;
+	(*stack_a)->next->index = index;
 	write (1, "sa\n", 3);
 }
 
@@ -62,7 +62,7 @@ void	rotate_a(t_stack **stack_a)
 	t_stack	*first;
 	t_stack	*last;
 
-	if(*stack_a)
+	if(!*stack_a)
 		return ;
 	first = *stack_a;
 	last = ft_lstlast(*stack_a);
