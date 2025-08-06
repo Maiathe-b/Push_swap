@@ -6,7 +6,7 @@
 /*   By: jomaia <jomaia@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/23 17:20:41 by jomaia            #+#    #+#             */
-/*   Updated: 2025/08/05 19:17:45 by jomaia           ###   ########.fr       */
+/*   prevdated: 2025/08/05 19:17:45 by jomaia           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,12 @@ void	swap_a(t_stack **stack_a)
 
 void	push_a(t_stack **stack_a, t_stack **stack_b)
 {
-	t_stack *node;
+	t_stack	*node;
+
 	if (!*stack_b)
 		return ;
 	node = *stack_b;
-	if (!(*stack_b)->next)
+	if (ft_lstsize (*stack_b) < 2)
 		*stack_b = NULL;
 	else
 	{
@@ -53,7 +54,7 @@ void	push_a(t_stack **stack_a, t_stack **stack_b)
 		node->next = *stack_a;
 		*stack_a = node;
 	}
-	write(1, "pa\n", 3);
+	write (1, "pa\n", 3);
 }
 
 void	rotate_a(t_stack **stack_a)
